@@ -22,6 +22,6 @@ RUN wget "https://github.com/FiloSottile/age/releases/download/v${AGE_VERSION}/a
 ## Cleanup
 RUN rm -rf /tmp/todelete
 
-USER cnb
+USER 1002:1000
 
 WORKDIR /workspace
