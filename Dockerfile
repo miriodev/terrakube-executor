@@ -25,6 +25,6 @@ RUN wget "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAG
 ## Cleanup
 RUN rm -rf /tmp/todelete
 
-USER 1002:1000
+USER 1000:1000
 
 WORKDIR /workspace
