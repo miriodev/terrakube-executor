@@ -1,4 +1,4 @@
-FROM azbuilder/executor:2.27.2
+FROM azbuilder/executor:2.29.1
 
 ENV TOOLS_ARCH="arm64"
 ENV OPENTOFU_VERSION="1.10.6"
