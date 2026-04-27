@@ -8,11 +8,7 @@ env:
   COMPOSE_DOCKER_CLI_BUILD: 1
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-<<<<<<< HEAD
   EXECUTOR_VERSION: 2.30.2
-=======
-  EXECUTOR_VERSION: 2.29.1
->>>>>>> c87bd792a2576827f447eeb75a350ccea6ffb3a8
 
 jobs:
   Docker_Build:
