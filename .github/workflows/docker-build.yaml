@@ -8,7 +8,7 @@ env:
   COMPOSE_DOCKER_CLI_BUILD: 1
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  EXECUTOR_VERSION: 2.27.2-3
+  EXECUTOR_VERSION: 2.30.2
 
 jobs:
   Docker_Build:
@@ -20,7 +20,7 @@ jobs:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         with:
-          platforms: 'arm64'
+          platforms: 'arm64,amd64'
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -51,7 +51,7 @@ jobs:
         with:
           context: .
           push: true
-          platforms: linux/arm64
+          platforms: linux/amd64,linux/arm64
           tags: '${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.EXECUTOR_VERSION }}'
           labels: ${{ steps.meta.outputs.labels }}
           provenance: false
