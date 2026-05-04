@@ -22,6 +22,6 @@ RUN wget "https://github.com/opentofu/opentofu/releases/download/v${OPENTOFU_VER
     && rm -rf /tmp/todelete
 
 USER 1000:1000
-ENV HOME="/home/heroku"
+ENV HOME="/home/cnb"
 
 WORKDIR /workspace
