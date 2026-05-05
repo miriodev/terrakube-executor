@@ -18,10 +18,10 @@ RUN wget "https://github.com/opentofu/opentofu/releases/download/v${OPENTOFU_VER
     && wget "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_${TARGETARCH}.zip" -O terraform.zip -q && unzip terraform.zip && mv terraform /usr/local/bin/terraform \
     && wget "https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux.${TARGETARCH}" -O sops -q && chmod +x sops && mv sops /usr/local/bin/sops \
     && wget "https://github.com/FiloSottile/age/releases/download/v${AGE_VERSION}/age-v${AGE_VERSION}-linux-${TARGETARCH}.tar.gz" -O age.tar.gz -q && tar xfz age.tar.gz && mv age/age /usr/local/bin/age && mv age/age-keygen /usr/local/bin/age-keygen \
-    && wget "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_arm64" -O terragrunt -q && chmod +x terragrunt && mv terragrunt /usr/local/bin/terragrunt \
+    && wget "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_${TARGETARCH}" -O terragrunt -q && chmod +x terragrunt && mv terragrunt /usr/local/bin/terragrunt \
     && rm -rf /tmp/todelete
 
-USER 1000:1000
+USER 1002:1000
 ENV HOME="/home/cnb"
 
 WORKDIR /workspace
