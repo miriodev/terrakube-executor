@@ -1,15 +1,17 @@
-FROM azbuilder/executor:2.30.2
+FROM azbuilder/executor:2.33.2
 
 ARG TARGETARCH
 
-ENV OPENTOFU_VERSION="1.10.6"
-ENV TERRAFORM_VERSION="1.13.3"
-ENV TERRAGRUNT_VERSION="0.88.1"
-ENV SOPS_VERSION="3.11.0"
-ENV AGE_VERSION="1.2.1"
+ENV OPENTOFU_VERSION="1.13.1"
+ENV TERRAFORM_VERSION="1.16.5"
+ENV TERRAGRUNT_VERSION="1.1.6"
+ENV SOPS_VERSION="3.13.3"
+ENV AGE_VERSION="1.3.2"
 
 USER 0
 RUN apt update && apt -y upgrade && apt install -y gpg gpg-agent wget zip && mkdir /tmp/todelete && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+COPY inject_terragrunt.bash /usr/local/bin/inject_terragrunt.bash
 
 # Install utilities
 WORKDIR /tmp/todelete
@@ -19,7 +21,7 @@ RUN wget "https://github.com/opentofu/opentofu/releases/download/v${OPENTOFU_VER
     && wget "https://github.com/getsops/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux.${TARGETARCH}" -O sops -q && chmod +x sops && mv sops /usr/local/bin/sops \
     && wget "https://github.com/FiloSottile/age/releases/download/v${AGE_VERSION}/age-v${AGE_VERSION}-linux-${TARGETARCH}.tar.gz" -O age.tar.gz -q && tar xfz age.tar.gz && mv age/age /usr/local/bin/age && mv age/age-keygen /usr/local/bin/age-keygen \
     && wget "https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_${TARGETARCH}" -O terragrunt -q && chmod +x terragrunt && mv terragrunt /usr/local/bin/terragrunt \
-    && rm -rf /tmp/todelete
+    && rm -rf /tmp/todelete && chmod +x /usr/local/bin/inject_terragrunt.bash
 
 USER 1002:1000
 ENV HOME="/home/cnb"
